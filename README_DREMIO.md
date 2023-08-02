@@ -23,7 +23,8 @@ aws ecr get-login-password --region sa-east-1 | docker login --username AWS --pa
 - Add the following content to `docker/requirements-local.txt`:
 ```
 pyodbc==4.0.32
-sqlalchemy_dremio
+sqlalchemy_dremio==1.2.1
+elasticsearch-dbapi[opendistro]==0.2.9
 ```
 
 - Add MAPBOX_API_KEY to the file `docker/.env-non-dev`;
