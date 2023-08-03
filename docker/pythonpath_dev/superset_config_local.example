@@ -23,6 +23,9 @@
 # superset/config.py
 #
 
+# This is the default secret key. Change it before starting new database
+SECRET_KEY="\2\1thisismyscretkey\1\2\\e\\y\\y\\h"
+
 # smtp server configuration
 ALERT_REPORTS_NOTIFICATION_DRY_RUN = False
 EMAIL_NOTIFICATIONS = True  # all the emails are sent using dryrun

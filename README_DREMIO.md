@@ -28,7 +28,7 @@ elasticsearch-dbapi[opendistro]==0.2.9
 ```
 - Create this local config file: 
 `cp docker/pythonpath_dev/superset_config_local.example docker/pythonpath_dev/superset_config_docker.py`
-And set SMTP parameters for sending e-mails inside Superset.
+Change the default SECRET_KEY and set SMTP parameters for sending e-mails inside Superset.
 
 - Add MAPBOX_API_KEY to the file `docker/.env-non-dev`;
 - Change the file `docker-compose-non-dev.yml`, replacing the image `superset-mz:1.5` to the full uri of the image on ECR `688779373772.dkr.ecr.sa-east-1.amazonaws.com/superset-mz:1.5`;
