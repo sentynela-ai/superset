@@ -23,5 +23,15 @@
 # superset/config.py
 #
 
-SQLALCHEMY_DATABASE_URI = "postgresql+psycopg2://pguser:pgpwd@some.host/superset"
-SQLALCHEMY_ECHO = True
+# smtp server configuration
+ALERT_REPORTS_NOTIFICATION_DRY_RUN = False
+EMAIL_NOTIFICATIONS = True  # all the emails are sent using dryrun
+SMTP_HOST = "localhost"
+SMTP_STARTTLS = True
+SMTP_SSL = False
+SMTP_USER = "superset"
+SMTP_PORT = 25
+SMTP_PASSWORD = "superset"
+SMTP_MAIL_FROM = "superset@superset.com"
+
+EMAIL_REPORTS_SUBJECT_PREFIX = "[Superset] " # optional - overwrites default value in config.py of "[Report] "

@@ -94,7 +94,16 @@ RUN mkdir -p ${PYTHONPATH} \
             unixodbc \ 
             unixodbc-dev \
             alien \
+            firefox-esr \
         && rm -rf /var/lib/apt/lists/*
+
+# Install GeckoDriver WebDriver
+# Use version 0.29.0. New versions will cause a bug: https://github.com/apache/superset/issues/22326#issuecomment-1419918172
+ENV GECKODRIVER_VERSION=0.29.0 
+RUN wget -q https://github.com/mozilla/geckodriver/releases/download/v${GECKODRIVER_VERSION}/geckodriver-v${GECKODRIVER_VERSION}-linux64.tar.gz && \
+    tar -x geckodriver -zf geckodriver-v${GECKODRIVER_VERSION}-linux64.tar.gz -O > /usr/bin/geckodriver && \
+    chmod 755 /usr/bin/geckodriver && \
+    rm geckodriver-v${GECKODRIVER_VERSION}-linux64.tar.gz
 
 # Adding Dremio ODBC Drivers
 ADD /dremio-odbc-1.5.4.1002-1.x86_64.rpm /dremio-odbc-1.5.4.1002-1.x86_64.rpm

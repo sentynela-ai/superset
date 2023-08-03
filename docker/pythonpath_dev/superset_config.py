@@ -69,6 +69,47 @@ REDIS_RESULTS_DB = get_env_variable("REDIS_RESULTS_DB", "1")
 
 RESULTS_BACKEND = FileSystemCache("/app/superset_home/sqllab")
 
+# Global cache config changed from file cache to Redis Cache 
+CACHE_CONFIG = {
+    'CACHE_TYPE': 'RedisCache',
+    'CACHE_DEFAULT_TIMEOUT': int(timedelta(days=1).total_seconds()),
+    'CACHE_KEY_PREFIX': 'superset_cache_',
+    'CACHE_REDIS_URL': 'redis://redis:6379/2'
+}
+
+# Cache for datasource metadata and query results
+DATA_CACHE_CONFIG = {
+    'CACHE_TYPE': 'RedisCache',
+    'CACHE_DEFAULT_TIMEOUT': int(timedelta(days=1).total_seconds()),
+    'CACHE_KEY_PREFIX': 'superset_data_',
+    'CACHE_REDIS_URL': 'redis://redis:6379/3'
+}
+
+# Cache for thumbnails
+THUMBNAIL_CACHE_CONFIG = {
+    'CACHE_TYPE': 'RedisCache',
+    'CACHE_DEFAULT_TIMEOUT': int(timedelta(days=1).total_seconds()),
+    'CACHE_KEY_PREFIX': 'superset_thumb_',
+    'CACHE_REDIS_URL': 'redis://redis:6379/4'
+}
+
+# Cache for filter state
+FILTER_STATE_CACHE_CONFIG = {
+    'CACHE_TYPE': 'RedisCache',
+    'CACHE_DEFAULT_TIMEOUT': int(timedelta(days=90).total_seconds()),
+    'CACHE_KEY_PREFIX': 'superset_filter_',
+    'CACHE_REDIS_URL': 'redis://redis:6379/5'
+}
+
+# Cache for form data
+EXPLORE_FORM_DATA_CACHE_CONFIG = {
+    'CACHE_TYPE': 'RedisCache',
+    'CACHE_DEFAULT_TIMEOUT': int(timedelta(days=7).total_seconds()),
+    'CACHE_KEY_PREFIX': 'superset_explore_',
+    'CACHE_REDIS_URL': 'redis://redis:6379/6'
+}
+
+
 
 class CeleryConfig(object):
     BROKER_URL = f"redis://{REDIS_HOST}:{REDIS_PORT}/{REDIS_CELERY_DB}"
